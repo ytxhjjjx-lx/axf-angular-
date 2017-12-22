@@ -6,7 +6,10 @@
 
 使用angular-router实现路由跳转
 
+* [angular-router](https://code.angularjs.org/1.3.20/docs/api/ngRoute)
+
 图标字体使用iconfont
+
 * [iconfont](http://www.iconfont.cn/)
 
 
