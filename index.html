@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- 引入iconfont文件 -->
+    <link rel="stylesheet" href="./aixianfeng-font/iconfont.css">
+</head>
+<body ng-app="myApp">
+    <div class="container">
+        <!-- 路由切换 -->
+        <div class="routerView" ng-view></div>
+        <!-- 底部导航栏 -->
+        <nav>
+            <a href="#/home" class="home" ng-class="{true:'active'}[activeIndex===0]" 
+            ng-click="activeIndex=0">
+                <span>&nbsp;</span>
+                首页
+            </a>
+            <a href="#/shansong" class="current" ng-class="{true:'active'}[activeIndex===1]" 
+            ng-click="activeIndex=1">
+                <span>&nbsp;</span>
+                闪送超市
+            </a>
+            <a href="#/cart" class="cart" ng-class="{true:'active'}[activeIndex===2]" 
+            ng-click="activeIndex=2">
+                <span>&nbsp;</span>
+                <!-- 采用ng-bind进行数据绑定, 以避免其未被渲染的模板被看到 -->
+                <var ng-show="productNum>0" ng-class="{true: 'active'}[numTransform]" 
+                ng-bind="productNum">
+                    <!-- {{productNum}} -->
+                </var>
+                购物车
+            </a>
+            <a href="#/mine" class="mine" ng-class="{true:'active'}[activeIndex===3]" 
+            ng-click="activeIndex=3">
+                <span>&nbsp;</span>
+                我的
+            </a>
+        </nav>
+    </div>
+</body>
+
+<!-- 引入angular文件 -->
+<script src="./js/angular.min.js"></script>
+<script src="./js/angular-route.js"></script>
+<!-- 重置字体文件 -->
+<script src="./js/reset.js"></script>
+<script src="./js/app.js"></script>
+</html>

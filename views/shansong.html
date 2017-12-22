@@ -1,0 +1,313 @@
+<header>
+    <div class="header-content">
+        <span>人民公园 12</span>
+    </div>
+    <span class="search">搜索</span>
+</header>
+<div class="category">
+    <!-- 左侧分类条目 -->
+    <ul class="categories">
+        <li ng-repeat="(index, item) in categorys" ng-click="changeCategory(item.id)">
+            <span ng-class="{true:'active'}[activeCateId===item.id]">{{item.name}}</span>
+        </li>
+    </ul>
+    <!-- 右侧商品列表 -->
+    <div class="productList">
+        <!-- 分类排序 -->
+        <!-- 打开筛选条目后, 将div高度设为100%, 覆盖整个商品列表区 -->
+        <div class="product-filter" ng-class="{true:'active'}[childCateBol||sortBol]">
+            <!-- 筛选关键字,排序或分类 -->
+            <div class="filter-titles">
+                <div ng-click="changeCategoryBol()" ng-class="{true: 'active'}[childCateBol]">
+                    <span>{{cateKey}}</span>
+                    <var>&nbsp;</var>
+                </div>
+                <div ng-click="changeRankingBol()" ng-class="{true: 'active'}[sortBol]">
+                    <span>{{sortKey}}</span>
+                    <var>&nbsp;</var>
+                </div>
+            </div>
+            <!-- 子分类条目(点击该区域内除子分类外的区域实现隐藏, 蒙版设置为该区域的背景) -->
+            <div class="filter-items" ng-show="childCateBol" ng-click="hideFilterItems()">
+                <ul>
+                    <li ng-repeat="item in filterItems" ng-click="filterProduct(item)"
+                    ng-class="{true:'active',false:''}[item.name === cateKey]">
+                        {{item.name}}
+                    </li>
+                </ul>
+            </div>
+            <!-- 排序条目(点击该区域内除子分类外的区域实现隐藏, 蒙版设置为该区域的背景) -->
+            <div class="filter-items" ng-show="sortBol" ng-click="hideFilterItems()">
+                <ul>
+                    <li ng-repeat="item in rankings" ng-click="filterProduct(item)"
+                    ng-class="{true:'active',false:''}[item.name === sortKey]">
+                        {{item.name}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 所有商品数据列表 -->
+        <ul class="productList-wrap">
+            <li ng-repeat="item in products[activeCateId] | filter : cidFilter | 
+            orderBy : orderType : orderBol">
+                <dl>
+                    <dt>
+                        <img src="{{item.img}}" alt="">
+                    </dt>
+                    <dd class="nowrap product-item-title">{{item.name}}</dd>
+                    <dd class="product-specifics-wrap">
+                        <div class="product-specifics">
+                            <span>{{item.specifics}}</span>
+                            <var>￥{{item.price}}</var>
+                        </div>
+                        <div class="product-operates">
+                            <span class="inner" ng-click="subNum(item)">-</span>
+                            <span class="product-operates-item">{{item.pre_state}}</span>
+                            <span class="inner" ng-click="addNum(item)">+</span>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+<style type="text/css">
+    .add-cart-item {
+        position: fixed;
+        transform: scale(0.8) rotate(30deg);
+        opacity: 0.9;
+        transition: all 0.6s cubic-bezier(0.58, -1.15, 0.99, 1.07);
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .add-cart-item>img {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    .category {
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+    }
+
+    .categories {
+        float: left;
+        width: 23.4375%;
+        font-size: 1.2rem;
+    }
+
+    .categories>li {
+        color: #6d6d6d;
+        padding: 0.3rem 0;
+        text-align: center;
+        box-sizing: border-box;
+        border-bottom: 0.1rem solid #e0e0e0;
+    }
+
+    .categories>li>span {
+        display: block;
+        height: 3.4rem;
+        line-height: 3.4rem;
+        position: relative;
+    }
+    /* 添加当前激活的分类的标志 */
+    .categories>li>span.active::before {
+        content: '';
+        border-left: .5rem solid #f0d001;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    .productList {
+        /*float: right;*/
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 76%;
+    }
+
+    .product-filter {
+        display: flex;
+        display: -webkit-flex;
+        flex-direction: column;
+        -webkit-flex-direction: column;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .product-filter.active {
+        height: 100%;
+    }
+
+    .filter-titles {
+        height: 1.8rem;
+        padding: 1.1rem 0;
+        background-color: rgba(255, 255, 255, 0.8);
+        width: 100%;
+        border-bottom: 0.1rem solid #e1dbdd;
+    }
+
+    .filter-titles>div {
+        color: #777;
+        float: left;
+        width: 50%;
+        height: 1.8rem;
+        line-height: 1.8rem;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .filter-titles>div:nth-child(1) {
+        box-sizing: border-box;
+        border-right: 0.1rem solid #d5d5d5;
+    }
+
+    .filter-titles>div>var {
+        display: inline-block;
+        width: 1.3rem;
+        height: 1.8rem;
+        line-height: 1.8rem;
+        background: url("images/icon-down.png") center center no-repeat;
+        -webkit-background-size: 1rem 0.6rem;
+        background-size: 1rem 0.6rem;
+        -webkit-transition: 0.5s ease;
+        -o-transition: 0.5s ease;
+        transition: 0.5s ease;
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    .filter-titles>div.active>var {
+        -webkit-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+        -o-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+
+    .filter-items {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 4.1rem;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .filter-items>ul {
+        overflow: hidden;
+        padding-bottom: 1rem;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .filter-items>ul>li {
+        padding: 0.7rem 0.9rem;
+        border: 0.1rem solid #e0e0e0;
+        /*border: 0.1rem solid #e6d056;*/
+        border-radius: 0.4rem;
+        float: left;
+        margin: 0.8rem 0 0 0.8rem;
+        color: #777;
+        font-size: 1.1rem
+    }
+
+    .filter-items>ul>li.active {
+        background-color: #fff9d9;
+        border-color: #e6d056;
+    }
+
+    .productList-wrap {
+        position: absolute;
+        top: 4.1rem;
+        bottom: 0;
+        width: 100%;
+        overflow-y: scroll;
+        background-color: #fff;
+    }
+
+    .productList-wrap>li {
+        border-bottom: 0.1rem solid #e1dbdd;
+        padding: .8rem .5rem;
+    }
+
+    .productList-wrap>li>dl {
+        overflow: hidden;
+    }
+
+    .productList-wrap>li>dl>dt {
+        float: left;
+        width: 8rem;
+        height: 8rem;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .productList-wrap>li>dl>dt>img {
+        width: 100%;
+    }
+
+    .productList-wrap>li>dl>dd {
+        font-size: 1.2rem;
+    }
+
+    .product-item-title {
+        margin-bottom: 2.9rem;
+    }
+
+    .product-specifics-wrap {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .product-specifics {
+        width: 40%;
+        overflow: hidden;
+    }
+
+    .product-specifics>span {
+        display: block;
+        color: #858585;
+        margin-bottom: 1rem;
+    }
+
+    .product-specifics>var {
+        color: #f40;
+    }
+
+    .product-operates {
+        width: 65%;
+        overflow: hidden;
+        position: absolute;
+        top: 0.4rem;
+        right: 0;
+    }
+
+    .product-operates>.inner {
+        display: inline-block;
+        font-size: 2.4rem;
+        width: 2.9rem;
+        height: 2.9rem;
+        line-height: 2.9rem;
+        color: #d73e00;
+        text-align: center;
+        /*padding: 0.8rem;*/
+        border: 0.1rem solid #dcbd9e;
+        border-radius: 50%;
+    }
+
+    .product-operates-item {
+        display: inline-block;
+        height: 2.9rem;
+        line-height: 2.9rem;
+        vertical-align: top;
+        font-size: 1.2rem;
+        margin: 0 0.5rem;
+    }
+</style>

@@ -1,0 +1,222 @@
+html{
+    font: '微软雅黑',Helvetica,Tahoma,Arial,'华文细黑',sans-serif;
+    color: #333;
+    background-color: white;
+}
+.container{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #f6f6f6;
+}
+/* 公共头部 */
+header{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 4.5rem;
+	z-index: 3;
+	background-color: #ffd600;
+}
+.header-content{
+	position: absolute;
+	left: 6rem;
+	right: 6rem;
+	height: 4.5rem;
+	text-align: center;
+}
+.header-content span{
+	line-height: 4.5rem;
+	font-weight: 700;
+	font-size: 1.4rem;
+}
+.header-content span::after{
+	content: "▼";
+}
+/* 头部搜索 */
+.search{
+	position: absolute;
+	right: 1rem;
+	width: 6rem;
+	height: 4.5rem;
+	background: url("../images/serach.png") no-repeat  right .5rem;
+	background-size: auto 2.2rem;
+    text-align: right;
+	line-height: 7rem;
+}
+/* 底部导航栏 */
+nav{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 5rem;
+	background-color: rgba(246,246,246,.95);
+}
+nav>a{
+	float: left;
+	width: 25%;
+	height: 5rem;
+	padding: .5rem 0;
+	text-align: center;
+	color: #777;
+    position: relative;
+    font-size: 1.2rem;
+}
+nav>a>span{
+	display: block;
+	width: 100%;
+	height: 2rem;
+	-webkit-background-size: auto 2rem;
+	background-size: auto 2rem;
+	background-position: center 0;
+	margin-bottom: .5rem;
+	background-repeat: no-repeat;
+}
+nav>a.active>span{
+	-webkit-animation: navs 1s;
+	animation: navs 1s;
+}
+nav>a.home>span{
+	background-image: url("../images/home.png");
+}
+nav>a.current>span{
+	background-image: url("../images/current.png");
+}
+nav>a.cart>span{
+	background-image: url("../images/cart.png");
+}
+nav>a.mine>span{
+	background-image: url("../images/mine.png");
+}
+nav>a.home.active>span{
+	background-image: url("../images/home-active.png");
+}
+nav>a.current.active>span{
+	background-image: url("../images/current-active.png");
+}
+nav>a.cart.active>span{
+	background-image: url("../images/cart-active.png");
+}
+nav>a.mine.active>span{
+	background-image: url("../images/mine-active.png");
+}
+/* 切换动画 */
+@-webkit-keyframes navs{
+	0%{
+		-webkit-background-size: auto .6rem;
+		background-size: auto .6rem;
+	}
+	20%{
+		-webkit-background-size: auto 2.2rem;
+		background-size: auto 2.2rem;
+	}
+	40%{
+		-webkit-background-size: auto 1.8rem;
+		background-size: auto 1.8rem;
+	}
+	60%{
+		-webkit-background-size: auto 2.06rem;
+		background-size: auto 2.06rem;
+	}
+	80%{
+		-webkit-background-size: auto 1.94rem;
+		background-size: auto 1.94rem;
+	}
+	100%{
+		-webkit-background-size: auto 2rem;
+		background-size: auto 2rem;
+	}
+}
+@keyframes navs{
+	0%{
+		-webkit-background-size: auto .6rem;
+		background-size: auto .6rem;
+	}
+	20%{
+		-webkit-background-size: auto 2.2rem;
+		background-size: auto 2.2rem;
+	}
+	40%{
+		-webkit-background-size: auto 1.8rem;
+		background-size: auto 1.8rem;
+	}
+	60%{
+		-webkit-background-size: auto 2.06rem;
+		background-size: auto 2.06rem;
+	}
+	80%{
+		-webkit-background-size: auto 1.94rem;
+		background-size: auto 1.94rem;
+	}
+	100%{
+		-webkit-background-size: auto 2rem;
+		background-size: auto 2rem;
+	}
+}
+nav>a.cart>var{
+	position: absolute;
+	right: 1rem;
+	top: 0.5rem;
+	background-color: #f40;
+	color: #fff;
+	line-height: 1.9rem;
+	height: 1.9rem;
+	width: 1.9rem;
+	text-align: center;
+	font-size: 1rem;
+	border-radius: 50%;
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: all 0.2s cubic-bezier(0.28,-0.42, 0.37, 1.55);
+	-o-transition: all 0.2s cubic-bezier(0.28,-0.42, 0.37, 1.55);
+	transition: all 0.2s cubic-bezier(0.28,-0.42, 0.37, 1.55);
+}
+nav>a.cart>var.active{
+	-webkit-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+/* 路由部分 */
+.routerView{
+	position: absolute;
+	top: 4.5rem;
+	bottom: 5rem;
+    left: 0;
+    right: 0;
+}
+.text-hidden{
+	visibility: hidden;
+}
+.nowrap{
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+.f14{
+	font-size: 1.4rem;
+}
+.pl14{
+	padding-left: 1.4rem;
+}
+.yellowbg{
+	background-color: #ffd600;
+}
+.yellowgray{
+	background-color: #bbb;
+}
+.bannar>img{
+  width: 100%;
+}
+
+
+
+
+
+
+

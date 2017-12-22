@@ -1,0 +1,156 @@
+<header>
+    <div class="header-content">
+        <span>人民公园 12</span>
+    </div>
+    <span class="search">搜索</span>
+</header>
+<main>
+    <div class="bannar">
+        <img src="../images/banner3.jpg" alt="">
+    </div>
+    <!-- 商品类型 -->
+    <ul class="acts-category" ng-repeat="(index, item) in categorys">
+        <li class="acts-category-item">
+            <!-- 每种商品类型名称 -->
+            <div class="acts-category-title">
+                <span>{{item.category_detail.name}}</span>
+                <a href="#/category">更多<span class="iconfont icon-mjiantou"></span></a>
+            </div>
+            <img class="category-item-banner" src="{{item.activity.img}}" alt="">
+            <!-- 每种商品类型的具体商品 -->
+            <ul class="acts-category-item-goodsList">
+                <li ng-repeat="item in item.category_detail.goods">
+                    <img src="{{item.img}}" alt="">
+                    <p class="category-name">{{item.name}}</p>
+                    <div class="product-specifics">
+                        <div class="product-specifics-left">
+                            <p>{{item.specifics}}</p>
+                            <p>￥{{item.price}}</p>
+                        </div>
+                        <div class="product-specifics-right" ng-click="addNum(item)">+</div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</main>
+<style type="text/css">
+    main {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #efefef;
+        overflow-y: scroll;
+    }
+
+    .banner img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .acts-category {
+        overflow-y: scroll;
+        margin-bottom: 1rem;
+    }
+
+    .acts-category-item {
+        background-color: #fff;
+        padding: 1.4rem 0.9rem;
+    }
+
+    .acts-category-title {
+        overflow: hidden;
+    }
+
+    .acts-category-title>span {
+        float: left;
+        border-left: 0.8rem solid #E80013;
+        color: #E80013;
+        text-indent: 0.6rem;
+        font-size: 1.4rem;
+    }
+
+    .acts-category-title>a {
+        float: right;
+        color: #999;
+        font-size: 1.3rem;
+    }
+
+    .acts-category-title>a .icon-mjiantou {
+        color: #999;
+        margin-left: .6rem;
+        font-weight: bold;
+    }
+
+    .category-item-banner {
+        width: 100%;
+        margin: 0.9rem 0;
+    }
+
+    .acts-category-item-goodsList {
+        overflow: hidden;
+    }
+
+    .acts-category-item-goodsList>li {
+        width: 31.33333%;
+        padding: 0 1%;
+        float: left;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .acts-category-item-goodsList>li:nth-child(3n-1) {
+        border-left: 0.1rem solid #e5e5e5;
+        border-right: 0.1rem solid #e5e5e5;
+        box-sizing: border-box;
+    }
+
+    .acts-category-item-goodsList>li>img {
+        width: 7.4rem;
+        height: 7.4rem;
+    }
+
+    .product-specifics {
+        overflow: hidden;
+        margin-top: 2.5rem;
+        position: relative;
+    }
+
+    .product-specifics-left {
+        float: left;
+        text-align: left;
+        line-height: 2rem;
+    }
+
+    .product-specifics-right {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 3rem;
+        height: 3rem;
+        border: 0.1rem solid #dee0dd;
+        border-radius: 50%;
+        font-size: 2rem;
+        color: #ff3910;
+        text-align: center;
+        line-height: 3rem;
+    }
+
+    .product-specifics-left>p:nth-child(1) {
+        color: #acacac;
+    }
+
+    .product-specifics-left>p:nth-child(2) {
+        color: #e44619;
+    }
+
+    .category-name {
+        /* 省略号显示超出文本内容 */
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        vertical-align: top;
+    }
+</style>

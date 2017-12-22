@@ -1,0 +1,193 @@
+<div class="mineWrap">
+    <div class="userContent">
+        <span class="iconfont icon-wode"></span>
+        <span class="">15779289473</span>
+        <span class="iconfont icon-mjiantou"></span>
+    </div>
+    <div class="favorite">
+        <span class="iconfont icon-dianpu">商品收藏</span>
+        <span class="iconfont icon-shangpin">店铺收藏</span>
+    </div>
+    <div class="bottom">
+        <div class="myOrder bgWhite">
+            <span class="my">我的订单</span>
+            <span class="allOrder">查看全部订单</span>
+        </div>
+        <div class="cateItems bgWhite">
+            <span class="iconfont icon-daifukuan">待付款</span>
+            <span class="iconfont icon-daishouhuo">待收货</span>
+            <span class="iconfont icon-daipingjia">待评价</span>
+            <span class="iconfont icon-shouhou">售后/退款</span>
+        </div>
+        <div class="tipItems bgWhite">
+            <span class="iconfont icon-jifenshangcheng">积分商城</span>
+            <span class="iconfont icon-youhuiquan">优惠券</span>
+            <span class="iconfont icon-shouhuodizhi">收货地址</span>
+            <span class="iconfont icon-kefu">客服</span>
+            <span class="iconfont icon-guanyuwomen">关于我们</span>
+        </div>
+        <div class="unLogin bgWhite">
+            退出当前账号
+        </div>
+    </div>
+</div>
+
+<style>
+    .mineWrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -4.5rem;
+        bottom: 0;
+    }
+
+    .userContent {
+        width: 100%;
+        height: 10rem;
+        background-color: #ffd600;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .bottom {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 13.5em;
+        bottom: 0;
+        overflow-y: scroll;
+        background-color: #eee;        
+    }
+    .icon-wode {
+        width: 5rem;
+        height: 5rem;
+        line-height: 5rem;
+        text-align: center;
+        font-size: 3.5rem;
+        color: #ccc;
+        background-color: #fff;
+        border-radius: 50%;
+    }
+
+    .userContent span:last-child,
+    .userContent span:nth-child(2) {
+        color: #fff;
+        font-size: 2rem;
+    }
+
+    .favorite {
+        display: flex;
+        height: 3.5rem;
+        align-items: center;
+        background-color: #f3c800;
+    }
+
+    .favorite span {
+        width: 50%;
+        height: 70%;
+        color: #fff;
+        text-align: center;
+        line-height: 2.45rem;
+    }
+
+    .favorite span:first-child {
+        border-right: 1px solid #fff;
+    }
+
+    .icon-shangpin:before,
+    .icon-dianpu:before {
+        font-size: 2rem;
+        margin-right: 1rem;
+    }
+
+    .myOrder {
+        width: 100%;
+        height: 5rem;
+        line-height: 5rem;
+        border-bottom: 1px solid #e0e0e0;
+        font-size: 1.4rem;
+        margin-top: 1rem;
+    }
+
+    .myOrder .my {
+        padding-left: 1.5rem;
+    }
+
+    .myOrder .allOrder {
+        color: #aaa;
+        background: url('../images/cart-more.png') no-repeat right center;
+        background-size: auto 1rem;
+        float: right;
+        width: 35%;
+    }
+
+    .cateItems {
+        height: 8rem;
+        display: flex;
+        margin-bottom: 1rem;
+    }
+
+    .cateItems span {
+        width: 25%;
+        font-size: 1.4rem;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cateItems .iconfont::before {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .tipItems {
+        height: 20rem;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+
+    .tipItems span {
+        width: 25%;
+        font-size: 1.4rem;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tipItems .iconfont:before {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .icon-jifenshangcheng:before {
+        color: #f97664;
+    }
+    .icon-youhuiquan:before {
+        color: #77a7ff;
+    }
+    .icon-shouhuodizhi:before {
+        color: #91c66a;
+    }
+    .icon-kefu:before {
+        color: #ff8400;
+    }
+    .icon-guanyuwomen:before {
+        color: #f97664;
+    }
+
+    .unLogin {
+        width: 100%;
+        height: 4rem;
+        line-height: 4rem;
+        font-size: 1.4rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .bgWhite {
+        background-color: #fff;
+    }
+</style>
