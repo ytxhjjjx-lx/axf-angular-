@@ -4,12 +4,11 @@
 
 ## Solution for this project
 
-```使用angular-router实现路由跳转
+使用angular-router实现路由跳转
 
-###图标字体使用iconfont
+图标字体使用iconfont
 * [iconfont](http://www.iconfont.cn/)
 
-```
 
 ## 个人github主页: 
 * [https://github.com/ytxhjjjx-lx/ytxhjjjx-lx.github.io](https://github.com/ytxhjjjx-lx/ytxhjjjx-lx.github.io)
